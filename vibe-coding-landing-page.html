@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học làm Website & Landing Page bằng Vibe Coding với AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ══════════════════════════════════════════
+           SCOPED CSS – All rules are prefixed with
+           .vbc-landing to prevent conflicts with
+           any Landing Page Builder styles.
+           ══════════════════════════════════════════ */
+
+        .vbc-landing {
+            --vbc-bg-primary: #0a0a0f;
+            --vbc-bg-secondary: #111118;
+            --vbc-bg-card: #16161f;
+            --vbc-bg-card-hover: #1c1c28;
+            --vbc-accent-cyan: #00e5ff;
+            --vbc-accent-blue: #3d7aff;
+            --vbc-accent-purple: #8b5cf6;
+            --vbc-accent-green: #22d3a7;
+            --vbc-accent-orange: #ff8c42;
+            --vbc-text-primary: #f0f0f5;
+            --vbc-text-secondary: #9898a6;
+            --vbc-text-muted: #5e5e6e;
+            --vbc-border-subtle: rgba(255,255,255,0.06);
+            --vbc-glow-cyan: 0 0 40px rgba(0,229,255,0.15);
+            --vbc-glow-blue: 0 0 40px rgba(61,122,255,0.15);
+            --vbc-gradient-main: linear-gradient(135deg, #00e5ff, #3d7aff, #8b5cf6);
+            --vbc-gradient-warm: linear-gradient(135deg, #ff8c42, #ff5f6d);
+            --vbc-radius-sm: 8px;
+            --vbc-radius-md: 14px;
+            --vbc-radius-lg: 20px;
+            --vbc-radius-xl: 28px;
+
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background: var(--vbc-bg-primary);
+            color: var(--vbc-text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .vbc-landing *, .vbc-landing *::before, .vbc-landing *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ── Utility ────────────────────────────── */
+        .vbc-landing .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .vbc-landing .gradient-text {
+            background: var(--vbc-gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .vbc-landing .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--vbc-accent-cyan);
+            margin-bottom: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vbc-landing .section-label::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--vbc-accent-cyan);
+        }
+
+        .vbc-landing .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 18px;
+            letter-spacing: -0.02em;
+        }
+
+        .vbc-landing .section-desc {
+            font-size: 1.05rem;
+            color: var(--vbc-text-secondary);
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        /* ── CTA Button ─────────────────────────── */
+        .vbc-landing .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: var(--vbc-gradient-main);
+            color: #fff;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 25px rgba(0,229,255,0.2), 0 0 60px rgba(61,122,255,0.1);
+        }
+
+        .vbc-landing .cta-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 40px rgba(0,229,255,0.35), 0 0 80px rgba(61,122,255,0.15);
+        }
+
+        .vbc-landing .cta-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .vbc-landing .cta-btn:hover::after { opacity: 1; }
+
+        .vbc-landing .cta-btn svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s;
+        }
+
+        .vbc-landing .cta-btn:hover svg { transform: translateX(3px); }
+
+        .vbc-landing .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 30px;
+            background: transparent;
+            color: var(--vbc-text-primary);
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .vbc-landing .cta-secondary:hover {
+            border-color: var(--vbc-accent-cyan);
+            background: rgba(0,229,255,0.05);
+        }
+
+        /* ── Navigation ─────────────────────────── */
+        .vbc-landing .vbc-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 0;
+            background: rgba(10,10,15,0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--vbc-border-subtle);
+            transition: all 0.3s;
+        }
+
+        .vbc-landing .vbc-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vbc-landing .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--vbc-text-primary);
+        }
+
+        .vbc-landing .logo span {
+            background: var(--vbc-gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .vbc-landing .nav-cta {
+            padding: 10px 24px;
+            background: var(--vbc-gradient-main);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .vbc-landing .nav-cta:hover { transform: scale(1.05); box-shadow: var(--vbc-glow-cyan); }
+
+        /* ── Hero ────────────────────────────────── */
+        .vbc-landing .hero {
+            padding: 160px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vbc-landing .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .vbc-landing .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -200px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .vbc-landing .hero .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .vbc-landing .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(0,229,255,0.08);
+            border: 1px solid rgba(0,229,255,0.15);
+            border-radius: 60px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--vbc-accent-cyan);
+            margin-bottom: 32px;
+            animation: vbc-fadeInDown 0.8s ease;
+        }
+
+        .vbc-landing .hero-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--vbc-accent-green);
+            border-radius: 50%;
+            animation: vbc-pulse 2s infinite;
+        }
+
+        @keyframes vbc-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .vbc-landing .hero h1 {
+            font-size: clamp(2.4rem, 5.5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            animation: vbc-fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .vbc-landing .hero h1 .line { display: block; }
+
+        .vbc-landing .hero-desc {
+            font-size: clamp(1.05rem, 2vw, 1.2rem);
+            color: var(--vbc-text-secondary);
+            max-width: 620px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            animation: vbc-fadeInUp 0.8s ease 0.25s both;
+        }
+
+        .vbc-landing .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: vbc-fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .vbc-landing .hero-proof {
+            margin-top: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            animation: vbc-fadeInUp 0.8s ease 0.55s both;
+        }
+
+        .vbc-landing .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            color: var(--vbc-text-secondary);
+        }
+
+        .vbc-landing .proof-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--vbc-accent-green);
+        }
+
+        /* Hero Visual */
+        .vbc-landing .hero-visual {
+            margin-top: 72px;
+            position: relative;
+            animation: vbc-fadeInUp 0.8s ease 0.7s both;
+        }
+
+        .vbc-landing .hero-visual-inner {
+            background: var(--vbc-bg-secondary);
+            border: 1px solid var(--vbc-border-subtle);
+            border-radius: var(--vbc-radius-lg);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .vbc-landing .browser-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            background: rgba(255,255,255,0.02);
+            border-bottom: 1px solid var(--vbc-border-subtle);
+        }
+
+        .vbc-landing .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .vbc-landing .browser-dot:nth-child(1) { background: #ff5f57; }
+        .vbc-landing .browser-dot:nth-child(2) { background: #ffbd2e; }
+        .vbc-landing .browser-dot:nth-child(3) { background: #28c840; }
+
+        .vbc-landing .code-demo {
+            padding: 32px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 2;
+            color: var(--vbc-text-secondary);
+            min-height: 200px;
+        }
+
+        .vbc-landing .code-line { display: flex; gap: 16px; }
+        .vbc-landing .code-num { color: var(--vbc-text-muted); user-select: none; min-width: 24px; text-align: right; }
+        .vbc-landing .code-keyword { color: var(--vbc-accent-purple); }
+        .vbc-landing .code-string { color: var(--vbc-accent-green); }
+        .vbc-landing .code-func { color: var(--vbc-accent-cyan); }
+        .vbc-landing .code-comment { color: var(--vbc-text-muted); font-style: italic; }
+
+        .vbc-landing .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 16px;
+            background: var(--vbc-accent-cyan);
+            margin-left: 2px;
+            animation: vbc-blink 1s steps(1) infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes vbc-blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* ── Section: What is Vibe Coding ────────── */
+        .vbc-landing .what-section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .vbc-landing .what-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .vbc-landing .what-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .vbc-landing .what-content p {
+            color: var(--vbc-text-secondary);
+            margin-bottom: 24px;
+            font-size: 1rem;
+            line-height: 1.85;
+        }
+
+        .vbc-landing .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .vbc-landing .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: var(--vbc-text-secondary);
+        }
+
+        .vbc-landing .feature-list li .icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: rgba(0,229,255,0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .vbc-landing .feature-list li .icon svg {
+            width: 14px;
+            height: 14px;
+            color: var(--vbc-accent-cyan);
+        }
+
+        .vbc-landing .what-visual {
+            position: relative;
+        }
+
+        .vbc-landing .vibe-card {
+            background: var(--vbc-bg-card);
+            border: 1px solid var(--vbc-border-subtle);
+            border-radius: var(--vbc-radius-lg);
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vbc-landing .vibe-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--vbc-gradient-main);
+        }
+
+        .vbc-landing .vibe-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--vbc-border-subtle);
+        }
+
+        .vbc-landing .vibe-step:last-child { border-bottom: none; }
+
+        .vbc-landing .step-number {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--vbc-gradient-main);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #fff;
+        }
+
+        .vbc-landing .step-text h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .vbc-landing .step-text p {
+            font-size: 0.85rem;
+            color: var(--vbc-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ── Section: Pain Points ────────────────── */
+        .vbc-landing .pain-section {
+            padding: 120px 0;
+            background: var(--vbc-bg-secondary);
+            position: relative;
+        }
+
+        .vbc-landing .pain-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+        }
+
+        .vbc-landing .pain-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .vbc-landing .pain-header .section-desc {
+            margin: 0 auto;
+        }
+
+        .vbc-landing .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .vbc-landing .pain-card {
+            background: var(--vbc-bg-card);
+            border: 1px solid var(--vbc-border-subtle);
+            border-radius: var(--vbc-radius-md);
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vbc-landing .pain-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,92,92,0.2);
+            background: var(--vbc-bg-card-hover);
+        }
+
+        .vbc-landing .pain-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 20px;
+            background: rgba(255,92,92,0.08);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+        }
+
+        .vbc-landing .pain-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .vbc-landing .pain-card p {
+            font-size: 0.88rem;
+            color: var(--vbc-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ── Section: Solution ───────────────────── */
+        .vbc-landing .solution-section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .vbc-landing .solution-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .vbc-landing .solution-header .section-desc { margin: 0 auto; }
+
+        .vbc-landing .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .vbc-landing .solution-card {
+            background: var(--vbc-bg-card);
+            border: 1px solid var(--vbc-border-subtle);
+            border-radius: var(--vbc-radius-lg);
+            padding: 40px 30px;
+            transition: all 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vbc-landing .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top left, rgba(0,229,255,0.04), transparent 60%);
+            pointer-events: none;
+        }
+
+        .vbc-landing .solution-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0,229,255,0.15);
+            box-shadow: var(--vbc-glow-cyan);
+        }
+
+        .vbc-landing .sol-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(0,229,255,0.08);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+        }
+
+        .vbc-landing .solution-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .vbc-landing .solution-card p {
+            font-size: 0.92rem;
+            color: var(--vbc-text-secondary);
+            line-height: 1.75;
+        }
+
+        /* ── Section: Who Should Learn ────────────── */
+        .vbc-landing .audience-section {
+            padding: 120px 0;
+            background: var(--vbc-bg-secondary);
+            position: relative;
+        }
+
+        .vbc-landing .audience-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+        }
+
+        .vbc-landing .audience-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .vbc-landing .audience-header .section-desc { margin: 0 auto; }
+
+        .vbc-landing .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+        }
+
+        .vbc-landing .audience-card {
+            background: var(--vbc-bg-card);
+            border: 1px solid var(--vbc-border-subtle);
+            border-radius: var(--vbc-radius-md);
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.35s;
+        }
+
+        .vbc-landing .audience-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(61,122,255,0.2);
+            background: var(--vbc-bg-card-hover);
+        }
+
+        .vbc-landing .audience-emoji {
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .vbc-landing .audience-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .vbc-landing .audience-card p {
+            font-size: 0.82rem;
+            color: var(--vbc-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ── Section: Roadmap ────────────────────── */
+        .vbc-landing .roadmap-section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .vbc-landing .roadmap-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .vbc-landing .roadmap-header .section-desc { margin: 0 auto; }
+
+        .vbc-landing .roadmap-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .vbc-landing .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--vbc-accent-cyan), var(--vbc-accent-blue), var(--vbc-accent-purple), var(--vbc-accent-orange));
+            border-radius: 2px;
+        }
+
+        .vbc-landing .module-card {
+            position: relative;
+            margin-bottom: 28px;
+            padding-left: 72px;
+        }
+
+        .vbc-landing .module-dot {
+            position: absolute;
+            left: 18px;
+            top: 28px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 3px solid;
+            background: var(--vbc-bg-primary);
+            z-index: 2;
+        }
+
+        .vbc-landing .module-card:nth-child(1) .module-dot { border-color: var(--vbc-accent-cyan); box-shadow: 0 0 12px rgba(0,229,255,0.3); }
+        .vbc-landing .module-card:nth-child(2) .module-dot { border-color: var(--vbc-accent-blue); box-shadow: 0 0 12px rgba(61,122,255,0.3); }
+        .vbc-landing .module-card:nth-child(3) .module-dot { border-color: var(--vbc-accent-purple); box-shadow: 0 0 12px rgba(139,92,246,0.3); }
+        .vbc-landing .module-card:nth-child(4) .module-dot { border-color: var(--vbc-accent-orange); box-shadow: 0 0 12px rgba(255,140,66,0.3); }
+
+        .vbc-landing .module-inner {
+            background: var(--vbc-bg-card);
+            border: 1px solid var(--vbc-border-subtle);
+            border-radius: var(--vbc-radius-md);
+            padding: 32px;
+            transition: all 0.35s;
+        }
+
+        .vbc-landing .module-inner:hover {
+            border-color: rgba(0,229,255,0.12);
+            background: var(--vbc-bg-card-hover);
+            transform: translateX(4px);
+        }
+
+        .vbc-landing .module-tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-bottom: 14px;
+        }
+
+        .vbc-landing .module-card:nth-child(1) .module-tag { background: rgba(0,229,255,0.1); color: var(--vbc-accent-cyan); }
+        .vbc-landing .module-card:nth-child(2) .module-tag { background: rgba(61,122,255,0.1); color: var(--vbc-accent-blue); }
+        .vbc-landing .module-card:nth-child(3) .module-tag { background: rgba(139,92,246,0.1); color: var(--vbc-accent-purple); }
+        .vbc-landing .module-card:nth-child(4) .module-tag { background: rgba(255,140,66,0.1); color: var(--vbc-accent-orange); }
+
+        .vbc-landing .module-inner h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .vbc-landing .module-inner p {
+            font-size: 0.92rem;
+            color: var(--vbc-text-secondary);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .vbc-landing .module-lessons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .vbc-landing .module-lessons span {
+            font-size: 0.78rem;
+            padding: 5px 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--vbc-border-subtle);
+            border-radius: 6px;
+            color: var(--vbc-text-secondary);
+        }
+
+        /* ── CTA Final ───────────────────────────── */
+        .vbc-landing .cta-section {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vbc-landing .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(0,229,255,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .vbc-landing .cta-section .container { position: relative; z-index: 2; }
+
+        .vbc-landing .cta-box {
+            background: var(--vbc-bg-card);
+            border: 1px solid var(--vbc-border-subtle);
+            border-radius: var(--vbc-radius-xl);
+            padding: 72px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vbc-landing .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--vbc-gradient-main);
+        }
+
+        .vbc-landing .cta-box h2 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 900;
+            margin-bottom: 18px;
+            letter-spacing: -0.02em;
+        }
+
+        .vbc-landing .cta-box p {
+            font-size: 1.1rem;
+            color: var(--vbc-text-secondary);
+            max-width: 560px;
+            margin: 0 auto 36px;
+            line-height: 1.8;
+        }
+
+        .vbc-landing .cta-box .cta-btn {
+            padding: 18px 48px;
+            font-size: 1.1rem;
+        }
+
+        .vbc-landing .cta-urgency {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--vbc-text-muted);
+        }
+
+        .vbc-landing .cta-urgency strong {
+            color: var(--vbc-accent-orange);
+        }
+
+        /* ── Footer ──────────────────────────────── */
+        .vbc-landing .vbc-footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--vbc-border-subtle);
+            text-align: center;
+        }
+
+        .vbc-landing .vbc-footer p {
+            font-size: 0.85rem;
+            color: var(--vbc-text-muted);
+        }
+
+        .vbc-landing .vbc-footer a {
+            color: var(--vbc-accent-cyan);
+            text-decoration: none;
+        }
+
+        /* ── Animations ──────────────────────────── */
+        @keyframes vbc-fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes vbc-fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .vbc-landing .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .vbc-landing .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Responsive ──────────────────────────── */
+        @media (max-width: 1024px) {
+            .vbc-landing .what-grid { grid-template-columns: 1fr; gap: 40px; }
+            .vbc-landing .pain-grid { grid-template-columns: repeat(2, 1fr); }
+            .vbc-landing .audience-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .vbc-landing .hero { padding: 130px 0 80px; }
+            .vbc-landing .solution-grid { grid-template-columns: 1fr; }
+            .vbc-landing .audience-grid { grid-template-columns: repeat(2, 1fr); }
+            .vbc-landing .pain-grid { grid-template-columns: 1fr; }
+            .vbc-landing .hero-proof { gap: 18px; flex-direction: column; }
+            .vbc-landing .roadmap-timeline::before { left: 20px; }
+            .vbc-landing .module-card { padding-left: 56px; }
+            .vbc-landing .module-dot { left: 10px; }
+            .vbc-landing .cta-box { padding: 48px 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .vbc-landing .audience-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="vbc-landing">
+
+<!-- ═══════ Navigation ═══════ -->
+<div class="vbc-nav">
+    <div class="container">
+        <a href="#" class="logo">vibe<span>coding</span>.vn</a>
+        <a href="#dang-ky" class="nav-cta">Đăng ký học ngay</a>
+    </div>
+</div>
+
+<!-- ═══════ Hero Section ═══════ -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">
+            <span class="pulse"></span>
+            Khai giảng khoá mới — Số lượng có hạn
+        </div>
+
+        <h1>
+            <span class="line">Học làm Website &</span>
+            <span class="line">Landing Page bằng</span>
+            <span class="line"><span class="gradient-text">Vibe Coding với AI</span></span>
+        </h1>
+
+        <p class="hero-desc">
+            Chỉ cần biết mô tả ý tưởng, AI sẽ giúp bạn tạo website hoàn chỉnh — không cần biết lập trình, không cần thuê dev, không cần chờ đợi.
+        </p>
+
+        <div class="hero-actions">
+            <a href="#dang-ky" class="cta-btn">
+                Đăng ký học ngay
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+            <a href="#lo-trinh" class="cta-secondary">
+                Xem lộ trình học
+            </a>
+        </div>
+
+        <div class="hero-proof">
+            <div class="proof-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                Không cần biết lập trình
+            </div>
+            <div class="proof-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                Tạo website trong vài phút
+            </div>
+            <div class="proof-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                Thực hành 100% với AI
+            </div>
+        </div>
+
+        <!-- Code Demo Visual -->
+        <div class="hero-visual">
+            <div class="hero-visual-inner">
+                <div class="browser-bar">
+                    <div class="browser-dot"></div>
+                    <div class="browser-dot"></div>
+                    <div class="browser-dot"></div>
+                </div>
+                <div class="code-demo">
+                    <div class="code-line"><span class="code-num">1</span><span class="code-comment">// Bạn chỉ cần nói với AI:</span></div>
+                    <div class="code-line"><span class="code-num">2</span><span class="code-keyword">prompt</span> = <span class="code-string">"Tạo cho tôi một landing page bán khoá học"</span></div>
+                    <div class="code-line"><span class="code-num">3</span><span class="code-string">"với hero section, testimonials, và CTA"</span></div>
+                    <div class="code-line"><span class="code-num">4</span></div>
+                    <div class="code-line"><span class="code-num">5</span><span class="code-comment">// AI sẽ tạo ra code hoàn chỉnh:</span></div>
+                    <div class="code-line"><span class="code-num">6</span><span class="code-func">claudeAI</span>.<span class="code-keyword">generate</span>(<span class="code-string">"website"</span>)<span class="typing-cursor"></span></div>
+                    <div class="code-line"><span class="code-num">7</span><span class="code-comment">// → Website hoàn chỉnh trong 3 phút ✨</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ What is Vibe Coding ═══════ -->
+<section class="what-section" id="vibe-coding">
+    <div class="container">
+        <div class="section-label">Khám phá xu hướng mới</div>
+        <div class="section-title">Vibe Coding là gì?</div>
+
+        <div class="what-grid">
+            <div class="what-content reveal">
+                <h3>Lập trình bằng ngôn ngữ tự nhiên</h3>
+                <p>
+                    Vibe Coding là cách tạo website hoàn toàn mới — bạn chỉ cần <strong>mô tả ý tưởng bằng tiếng Việt</strong>, AI sẽ viết toàn bộ code cho bạn. Không cần học HTML, CSS hay JavaScript.
+                </p>
+                <p>
+                    Với sự hỗ trợ của <strong>Claude AI</strong> và <strong>Antigravity AI</strong>, bạn có thể tạo website chuyên nghiệp chỉ trong vài phút — đây là xu hướng lập trình đang thay đổi cả ngành công nghệ.
+                </p>
+
+                <ul class="feature-list">
+                    <li>
+                        <span class="icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                        Viết prompt bằng tiếng Việt — AI hiểu và tạo code
+                    </li>
+                    <li>
+                        <span class="icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                        Chỉnh sửa, thêm tính năng chỉ bằng mô tả
+                    </li>
+                    <li>
+                        <span class="icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                        Xu hướng lập trình #1 năm 2025–2026
+                    </li>
+                </ul>
+            </div>
+
+            <div class="what-visual reveal">
+                <div class="vibe-card">
+                    <div class="vibe-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">
+                            <h4>Mô tả ý tưởng</h4>
+                            <p>Bạn viết prompt: "Tạo landing page bán hàng với hero, testimonials, pricing"</p>
+                        </div>
+                    </div>
+                    <div class="vibe-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">
+                            <h4>AI tạo code</h4>
+                            <p>Claude AI hoặc Antigravity AI sẽ viết toàn bộ HTML, CSS, JavaScript</p>
+                        </div>
+                    </div>
+                    <div class="vibe-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">
+                            <h4>Chỉnh sửa & hoàn thiện</h4>
+                            <p>Yêu cầu AI thay đổi màu sắc, bố cục, nội dung — tất cả bằng tiếng Việt</p>
+                        </div>
+                    </div>
+                    <div class="vibe-step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">
+                            <h4>Xuất bản website</h4>
+                            <p>Website hoàn chỉnh, sẵn sàng go live trong vài phút</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ Pain Points ═══════ -->
+<section class="pain-section">
+    <div class="container">
+        <div class="pain-header reveal">
+            <div class="section-label">Bạn đang gặp vấn đề này?</div>
+            <div class="section-title">Nỗi đau của người muốn<br>làm website</div>
+            <p class="section-desc">Hàng nghìn người có ý tưởng tuyệt vời nhưng không thể hiện thực hoá được vì những rào cản này.</p>
+        </div>
+
+        <div class="pain-grid">
+            <div class="pain-card reveal">
+                <div class="pain-icon">😫</div>
+                <h4>Không biết code</h4>
+                <p>Nhìn HTML, CSS, JavaScript như nhìn ngoại ngữ. Muốn học nhưng không biết bắt đầu từ đâu.</p>
+            </div>
+            <div class="pain-card reveal">
+                <div class="pain-icon">💸</div>
+                <h4>Thuê dev tốn quá nhiều</h4>
+                <p>Một landing page đơn giản cũng tốn 5–15 triệu. Mỗi lần chỉnh sửa lại phải trả thêm phí.</p>
+            </div>
+            <div class="pain-card reveal">
+                <div class="pain-icon">⏳</div>
+                <h4>Mất quá nhiều thời gian</h4>
+                <p>Từ brief đến hoàn thiện mất hàng tuần, thậm chí hàng tháng. Ý tưởng nguội lạnh trước khi website xong.</p>
+            </div>
+            <div class="pain-card reveal">
+                <div class="pain-icon">🚧</div>
+                <h4>Khó triển khai nhanh</h4>
+                <p>Có ý tưởng mới nhưng phải chờ đợi, phụ thuộc người khác. Cơ hội kinh doanh trôi qua nhanh chóng.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ Solution ═══════ -->
+<section class="solution-section">
+    <div class="container">
+        <div class="solution-header reveal">
+            <div class="section-label">Giải pháp cho bạn</div>
+            <div class="section-title">Khoá học giúp bạn tự tạo<br><span class="gradient-text">website với AI</span></div>
+            <p class="section-desc">Không cần học lập trình. Chỉ cần biết viết prompt đúng cách, AI sẽ làm phần còn lại.</p>
+        </div>
+
+        <div class="solution-grid">
+            <div class="solution-card reveal">
+                <div class="sol-icon">✍️</div>
+                <h4>Viết prompt để AI tạo website</h4>
+                <p>Học kỹ thuật viết prompt hiệu quả để Claude AI và Antigravity AI hiểu chính xác bạn muốn gì và tạo ra code hoàn chỉnh.</p>
+            </div>
+            <div class="solution-card reveal">
+                <div class="sol-icon">⚡</div>
+                <h4>Tạo landing page trong vài phút</h4>
+                <p>Từ ý tưởng đến landing page bán hàng chuyên nghiệp chỉ trong 5–10 phút. Nhanh gấp 100 lần so với cách truyền thống.</p>
+            </div>
+            <div class="solution-card reveal">
+                <div class="sol-icon">🎨</div>
+                <h4>Chỉnh sửa website dễ dàng</h4>
+                <p>Muốn đổi màu? Thêm section? Chỉ cần nói với AI. Bạn kiểm soát hoàn toàn mà không cần đụng vào code.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ Who Should Learn ═══════ -->
+<section class="audience-section">
+    <div class="container">
+        <div class="audience-header reveal">
+            <div class="section-label">Dành cho ai</div>
+            <div class="section-title">Ai nên học khoá này?</div>
+            <p class="section-desc">Khoá học phù hợp với bất kỳ ai muốn tự tạo website mà không cần kỹ năng lập trình.</p>
+        </div>
+
+        <div class="audience-grid">
+            <div class="audience-card reveal">
+                <span class="audience-emoji">🏪</span>
+                <h4>Người kinh doanh online</h4>
+                <p>Tự tạo landing page bán hàng, không phụ thuộc ai</p>
+            </div>
+            <div class="audience-card reveal">
+                <span class="audience-emoji">💻</span>
+                <h4>Freelancer</h4>
+                <p>Thêm dịch vụ thiết kế web vào portfolio của bạn</p>
+            </div>
+            <div class="audience-card reveal">
+                <span class="audience-emoji">📈</span>
+                <h4>Marketer</h4>
+                <p>Tạo landing page A/B test nhanh chóng, không cần dev</p>
+            </div>
+            <div class="audience-card reveal">
+                <span class="audience-emoji">🎬</span>
+                <h4>Creator</h4>
+                <p>Xây dựng trang cá nhân, portfolio ấn tượng</p>
+            </div>
+            <div class="audience-card reveal">
+                <span class="audience-emoji">🌱</span>
+                <h4>Người mới bắt đầu</h4>
+                <p>Muốn làm website nhưng chưa biết code từ đâu</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ Roadmap ═══════ -->
+<section class="roadmap-section" id="lo-trinh">
+    <div class="container">
+        <div class="roadmap-header reveal">
+            <div class="section-label">Lộ trình học tập</div>
+            <div class="section-title">Từ zero đến <span class="gradient-text">website hoàn chỉnh</span></div>
+            <p class="section-desc">4 module được thiết kế theo trình tự từ cơ bản đến nâng cao, thực hành 100% với AI.</p>
+        </div>
+
+        <div class="roadmap-timeline">
+            <div class="module-card reveal">
+                <div class="module-dot"></div>
+                <div class="module-inner">
+                    <span class="module-tag">Module 1</span>
+                    <h4>Giới thiệu Vibe Coding</h4>
+                    <p>Hiểu Vibe Coding là gì, tại sao đây là kỹ năng bắt buộc trong thời đại AI. Cài đặt công cụ và sẵn sàng thực hành.</p>
+                    <div class="module-lessons">
+                        <span>Vibe Coding là gì</span>
+                        <span>Tổng quan công cụ AI</span>
+                        <span>Cài đặt môi trường</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-card reveal">
+                <div class="module-dot"></div>
+                <div class="module-inner">
+                    <span class="module-tag">Module 2</span>
+                    <h4>Cách viết Prompt để AI tạo Website</h4>
+                    <p>Nắm vững kỹ thuật viết prompt hiệu quả — từ prompt cơ bản đến prompt nâng cao giúp AI tạo website chính xác theo ý bạn.</p>
+                    <div class="module-lessons">
+                        <span>Cấu trúc prompt chuẩn</span>
+                        <span>Prompt nâng cao</span>
+                        <span>Thực hành viết prompt</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-card reveal">
+                <div class="module-dot"></div>
+                <div class="module-inner">
+                    <span class="module-tag">Module 3</span>
+                    <h4>Tạo Landing Page bằng Claude AI</h4>
+                    <p>Thực hành tạo landing page bán hàng hoàn chỉnh với Claude AI — từ hero section, testimonials đến CTA chuyển đổi cao.</p>
+                    <div class="module-lessons">
+                        <span>Tạo hero section</span>
+                        <span>Viết sales copy với AI</span>
+                        <span>Tối ưu chuyển đổi</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-card reveal">
+                <div class="module-dot"></div>
+                <div class="module-inner">
+                    <span class="module-tag">Module 4</span>
+                    <h4>Tạo Website hoàn chỉnh với Antigravity AI</h4>
+                    <p>Xây dựng website nhiều trang với Antigravity AI — bao gồm trang chủ, giới thiệu, dịch vụ, blog và liên hệ.</p>
+                    <div class="module-lessons">
+                        <span>Website nhiều trang</span>
+                        <span>Antigravity AI</span>
+                        <span>Xuất bản & go live</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ Final CTA ═══════ -->
+<section class="cta-section" id="dang-ky">
+    <div class="container">
+        <div class="cta-box reveal">
+            <div class="section-label">Bắt đầu ngay hôm nay</div>
+            <h2>Sẵn sàng tự tạo website<br><span class="gradient-text">với sức mạnh AI?</span></h2>
+            <p>Đăng ký ngay để nắm bắt kỹ năng tạo website bằng AI — kỹ năng sẽ thay đổi cách bạn kinh doanh online.</p>
+            <a href="#" class="cta-btn">
+                Đăng ký học ngay
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+            <p class="cta-urgency">⚡ <strong>Ưu đãi có hạn</strong> — Đăng ký sớm để nhận giá tốt nhất</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ Footer ═══════ -->
+<div class="vbc-footer">
+    <div class="container">
+        <p>© 2026 vibecoding.vn — Khoá học Vibe Coding với AI</p>
+    </div>
+</div>
+
+</div><!-- /.vbc-landing -->
+
+<!-- ═══════ Scroll Reveal Script ═══════ -->
+<script>
+    (function() {
+        var scope = document.querySelector('.vbc-landing');
+        if (!scope) return;
+
+        var reveals = scope.querySelectorAll('.reveal');
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry, i) {
+                if (entry.isIntersecting) {
+                    setTimeout(function() {
+                        entry.target.classList.add('visible');
+                    }, i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function(el) { observer.observe(el); });
+
+        // Smooth nav background
+        var nav = scope.querySelector('.vbc-nav');
+        if (nav) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.style.background = 'rgba(10,10,15,0.92)';
+                } else {
+                    nav.style.background = 'rgba(10,10,15,0.7)';
+                }
+            });
+        }
+    })();
+</script>
+
+</body>
+</html>
