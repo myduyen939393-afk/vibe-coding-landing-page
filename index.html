@@ -897,6 +897,68 @@
             color: var(--vbc-accent-orange);
         }
 
+        /* ── Register Form ───────────────────────── */
+        .vbc-landing .register-form {
+            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .vbc-landing .register-form input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--vbc-border-subtle);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .vbc-landing .register-form input::placeholder { color: var(--vbc-text-muted); }
+        .vbc-landing .register-form input:focus { border-color: var(--vbc-accent-cyan); }
+        .vbc-landing .price-box {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--vbc-border-subtle);
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: center;
+        }
+        .vbc-landing .price-original {
+            font-size: 0.95rem;
+            color: var(--vbc-text-muted);
+            text-decoration: line-through;
+        }
+        .vbc-landing .price-sale {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--vbc-accent-cyan);
+            margin-top: 4px;
+        }
+        .vbc-landing .price-note {
+            font-size: 0.8rem;
+            color: var(--vbc-text-muted);
+            margin-top: 6px;
+        }
+        .vbc-landing .register-form .cta-btn {
+            width: 100%;
+            justify-content: center;
+        }
+        .vbc-landing .support-note {
+            margin-top: 16px;
+            font-size: 0.83rem;
+            color: var(--vbc-text-muted);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--vbc-border-subtle);
+            border-radius: 8px;
+            padding: 10px 16px;
+        }
+        .vbc-landing .support-note span { color: var(--vbc-accent-cyan); font-weight: 600; }
+
         /* ── Footer ──────────────────────────────── */
         .vbc-landing .vbc-footer {
             padding: 40px 0;
@@ -1283,10 +1345,20 @@
             <div class="section-label">Bắt đầu ngay hôm nay</div>
             <h2>Sẵn sàng tự tạo website<br><span class="gradient-text">với sức mạnh AI?</span></h2>
             <p>Đăng ký ngay để nắm bắt kỹ năng tạo website bằng AI — kỹ năng sẽ thay đổi cách bạn kinh doanh online.</p>
-            <a href="#" class="cta-btn">
-                Đăng ký học ngay
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-            </a>
+            <form class="register-form" onsubmit="return false;">
+                <input type="text" placeholder="Họ và tên" required />
+                <input type="tel" placeholder="Số điện thoại" required />
+                <div class="price-box">
+                    <div class="price-original">899.000 VND</div>
+                    <div class="price-sale">299.000 VND</div>
+                    <div class="price-note">Ưu đãi có hạn — tiết kiệm 600.000 VND</div>
+                </div>
+                <button type="submit" class="cta-btn">
+                    Đăng ký học ngay
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                </button>
+            </form>
+            <p class="support-note">✅ <span>Hỗ trợ kỹ thuật miễn phí trong 2 tuần đầu</span> sau khi mua khóa học.</p>
             <p class="cta-urgency">⚡ <strong>Ưu đãi có hạn</strong> — Đăng ký sớm để nhận giá tốt nhất</p>
         </div>
     </div>
